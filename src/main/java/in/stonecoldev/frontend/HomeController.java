@@ -12,7 +12,7 @@ public class HomeController {
   @Get
   @Produces(MediaType.TEXT_PLAIN)
   public String index() {
-    return "frrrrrrrrrt";
+    return "bramble";
   }
 
 }
