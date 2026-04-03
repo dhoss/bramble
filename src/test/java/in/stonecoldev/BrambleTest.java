@@ -14,7 +14,7 @@ class BrambleTest {
     EmbeddedApplication<?> application;
 
     @Test
-    void testItWorks() {
+    void smoke() {
         Assertions.assertTrue(application.isRunning());
     }
 
