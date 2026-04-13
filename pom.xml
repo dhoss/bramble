@@ -13,6 +13,7 @@
     <version>4.10.9</version>
   </parent>
   <properties>
+    <record.builder.version>52</record.builder.version>
     <packaging>jar</packaging>
     <jdk.version>21</jdk.version>
     <release.version>21</release.version>
@@ -31,6 +32,12 @@
   </repositories>
 
   <dependencies>
+    <dependency>
+      <groupId>io.soabase.record-builder</groupId>
+      <artifactId>record-builder-core</artifactId>
+      <version>${record.builder.version}</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>io.micronaut.sourcegen</groupId>
       <artifactId>micronaut-sourcegen-annotations</artifactId>
@@ -80,6 +87,19 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>io.soabase.record-builder</groupId>
+              <artifactId>record-builder-processor</artifactId>
+              <version>${record.builder.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>io.micronaut.maven</groupId>
         <artifactId>micronaut-maven-plugin</artifactId>
         <configuration>
@@ -96,7 +116,6 @@
         <configuration>
           <!-- Uncomment to enable incremental compilation -->
           <!-- <useIncrementalCompilation>false</useIncrementalCompilation> -->
-
           <annotationProcessorPaths combine.children="append">
             <path>
               <groupId>io.micronaut</groupId>
@@ -113,6 +132,10 @@
                   <artifactId>micronaut-inject</artifactId>
                 </exclusion>
               </exclusions>
+            </path>
+            <path>
+              <groupId>io.micronaut.sourcegen</groupId>
+              <artifactId>micronaut-sourcegen-generator-java</artifactId>
             </path>
           </annotationProcessorPaths>
           <compilerArgs>

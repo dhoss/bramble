@@ -5,10 +5,16 @@ import java.util.Optional;
 
 public interface Tree {
 
-  Integer id();
-
   List<Tree> children();
 
   Optional<Tree> parent();
+
+  List<Tree> addChild(Tree child);
+
+  List<Tree> removeChild(Tree child);
+
+  void reparent(Tree newParent, Tree child);
+
+  int delete(Tree toDelete);
 
 }
